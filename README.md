@@ -1,4 +1,4 @@
-##ddj-catalogue-backend
+##DDJ Catalogue Backend
 
 #### Installation
 ```
