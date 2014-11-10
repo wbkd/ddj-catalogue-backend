@@ -6,7 +6,7 @@ var config = {
     host: 'localhost',
     spreadsheetkey : process.env.KEY,
     api: '/api/v1/',
-    db: 'mongodb://localhost/ddjprojects'
+    db: 'mongodb://localhost/ddjcat'
   },
  
   production:  {
@@ -14,7 +14,7 @@ var config = {
     host: 'localhost',
     spreadsheetkey : process.env.KEY,
     api: '/api/v1/',
-    db: 'mongodb://localhost/ddjprojects'
+    db: 'mongodb://localhost/ddjcat'
   }
 };
 
