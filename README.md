@@ -8,7 +8,7 @@ $ npm install
 #### Setup MongoDB
 You need a running mongo instance
 ```
-mongod --dbpath=/your/dbpath
+$ mongod --dbpath=/your/dbpath
 ```
 
 #### Import Spreadsheet
