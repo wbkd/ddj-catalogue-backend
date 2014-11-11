@@ -5,11 +5,19 @@ var projectRoutes = [
 		
 	{
 		method : 'get',
-		path : config.api + 'projects/',
+		path : config.api + 'projects',
 		config : {
 			handler : ProjectController.getAll
 		}
-	}
+	},
+	{
+		method : 'post',
+		path : config.api + 'projects',
+		config : {
+			handler : ProjectController.query
+		}
+	},
+
 
 ];
 

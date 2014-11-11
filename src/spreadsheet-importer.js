@@ -48,6 +48,11 @@ function cleanupData(projectData){
 }
 
 function stringToArray(str){
+
+	if(!str){
+		return [];
+	}
+
 	return str.indexOf(',') !== -1 ? str.split(',') : [str];
 }
 

@@ -19,6 +19,7 @@
   "homepage": "https://github.com/wbkd/simple-spreadsheet-backend",
   "dependencies": {
     "hapi": "^7.5.0",
+    "merge": "^1.2.0",
     "mongodb": "^1.4.19",
     "mongoose": "^3.8.19",
     "tabletop": "^1.3.5"

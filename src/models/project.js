@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var projectSchema = new Schema({
 	publisher: String,
-	url : {type: String, unique : true },
+	url : {type: String, unique : false },
     title: String,
     byline : [String],
     visualform : String,
