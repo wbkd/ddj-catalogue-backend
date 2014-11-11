@@ -23,11 +23,11 @@ $ npm start
 
 ## API
 
-##### Return all objects
+#### Return all objects
 
 `get` http://localhost:1337/api/v1/projects
 
-##### Filtered result
+#### Filtered result
 
 `post` http://localhost:1337/api/v1/projects
 
