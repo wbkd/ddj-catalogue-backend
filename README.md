@@ -45,6 +45,6 @@ Sort by publisher and get the first 25 items:
 
 Filter category=Politik and get the second 25 items:
 ```
-{ "fitlers" : { "category" : "Politik" }, items : 25, offset :1  }
+{ "filters" : { "category" : "Politik" }, items : 25, offset :1  }
 ```
 
