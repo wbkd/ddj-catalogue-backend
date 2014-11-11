@@ -33,7 +33,7 @@ $ npm start
 
 **Default options:**
 
-```
+```json
 {
   "filter" : {},
   "sortby": { "date" : -1 }, 
@@ -45,17 +45,28 @@ $ npm start
 **Examples:**
 
 Sort by date and filter visualform=Chart:
-```
-{ "filters" : { "visualform" : "Chart" }, "sortby" : { "date" : -1 }  }
+```json
+{ 
+  "filters" : { "visualform" : "Chart" }, 
+  "sortby" : { "date" : -1 }  
+}
 ```
 
 Sort by publisher and get the first 25 items:
-```
-{ "sortby" : { "publisher" : 1 }, items : 25, offset : 0  }
+```json
+{ 
+  "sortby" : { "publisher" : 1 }, 
+  "items" : 25, 
+  "offset" : 0  
+}
 ```
 
 Filter category=Politik and get the second 25 items:
-```
-{ "filters" : { "category" : "Politik" }, items : 25, offset :1  }
+```json
+{ 
+  "filters": { "category" : "Politik" }, 
+  "items": 25, 
+  "offset": 1  
+}
 ```
 
