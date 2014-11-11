@@ -35,12 +35,10 @@ $ npm start
 
 ```
 {
-  filters : {},
-  sortby: {
-    date : -1
-  }, 
-  items : 25, 
-  offset : 0
+  "filter" : {},
+  "sortby": { "date" : -1 }, 
+  "items" : 25, 
+  "offset" : 0
 }
 ```
 
