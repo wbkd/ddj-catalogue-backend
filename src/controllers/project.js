@@ -20,7 +20,9 @@ module.exports.getAll = function(req, reply) {
 
 module.exports.query = function(req, reply) {
 
-  var options = merge(defaultQueryOptions,req.payload),
+  
+  var payload = !Object.keys(req.payload).length ? {} : JSON.parse(req.payload),
+    options = merge(defaultQueryOptions,payload),
     skip = options.offset * options.items;
 
   Project

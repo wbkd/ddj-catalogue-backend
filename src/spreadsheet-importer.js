@@ -17,15 +17,32 @@ db.once('open', function callback () {
 
 function updateDatabase(data,tabletop) {
 
-	var cleanedData = data.map(cleanupData);
-	Project.collection.insert(cleanedData,null,function(err,insertedData){
-		if(insertedData){
-			console.log('Successfully stored',insertedData.length,'projects.');
-		}else{
-			console.log('No new data.')
+	var cleanedData = data.map(cleanupData),
+		index = 0,
+		count = cleanedData.length;
+
+	insertData();
+	
+	function insertData(){
+		if(index >= count){
+			db.close();	
+			return false;
 		}
-		db.close();	
-	});
+
+		var currentData = cleanedData[index],
+			url = currentData.url
+
+		if(typeof url  === 'undefined' || !url){
+			index++;
+			insertData();
+			return false;
+		}
+
+		Project.update({ url : url },currentData,{upsert : true},function(err,updateCount){
+			index++;
+			insertData();	
+		});
+	}
 }
 
 function getSpreadsheetData(cb) {
@@ -40,6 +57,7 @@ function cleanupData(projectData){
 
 	projectData.byline = stringToArray(projectData.byline);
 	projectData.tags = stringToArray(projectData.tags);
+	projectData.visualform = stringToArray(projectData.visualform);
 	projectData.date = formatDate(projectData.date);
 
 	delete projectData.rowNumber;
