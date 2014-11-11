@@ -31,6 +31,19 @@ $ npm start
 
 `post` http://localhost:1337/api/v1/projects
 
+**Default options:**
+
+```
+{
+  filters : {},
+  sortby: {
+    date : -1
+  }, 
+  items : 25, 
+  offset : 0
+}
+```
+
 **Examples:**
 
 Sort by date and filter visualform=Chart:
