@@ -21,4 +21,18 @@ var projectRoutes = [
 
 ];
 
-module.exports = projectRoutes;
+var staticRoutes = [{
+  method: 'GET',
+  path: '/images/{filename}',
+  config: {
+    handler: function(request, reply) {
+      var filename = request.params.filename;
+      reply.file('images/' + filename);
+    },
+    description: 'Returns an image.',
+    notes: ['static', 'images', 'upload']
+  }
+}];
+
+
+module.exports = [].concat(projectRoutes,staticRoutes);

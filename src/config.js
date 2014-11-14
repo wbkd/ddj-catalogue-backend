@@ -2,6 +2,7 @@ var Path = require('path');
 
 var config = {
   development: {
+    root: Path.resolve(__dirname, '../'),
     port: 1337,
     host: 'localhost',
     spreadsheetkey : process.env.KEY,
@@ -10,6 +11,7 @@ var config = {
   },
  
   production:  {
+    root: Path.resolve(__dirname, '../'),
     port: 1337,
     host: 'localhost',
     spreadsheetkey : process.env.KEY,
