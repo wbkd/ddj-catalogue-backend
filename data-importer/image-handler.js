@@ -19,6 +19,7 @@ function downloadImage(project,cb){
 		filePath = path.resolve(imagesPath, filename);
 
 	if(typeof imageurl === 'undefined' || !imageurl){
+		// TODO : check og:image metatag ftw
 		cb(project)
   		return false;
 	}
