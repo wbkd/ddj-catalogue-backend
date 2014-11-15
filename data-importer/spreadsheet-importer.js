@@ -11,6 +11,7 @@ mongoose.connect(config.db);
 var db = mongoose.connection;
 var merge = require('merge');
 var async = require('async');
+var _ = require('lodash');
 var winston = require('winston');
 var fs = require('fs');
 var path = require('path');
@@ -18,7 +19,7 @@ var path = require('path');
 var dataCleaner = require('./data-cleaner');
 var imageHandler = require('./image-handler');
 var Project = require('../src/models/project');
-var uiDataWriter = require('./ui-data-writer');
+var uiDataWriter = require('./uidata-handler');
 
 var isLocalMode = true;
 
@@ -48,7 +49,7 @@ function updateData(currentData, callback) {
   var url = currentData.url,
     imageurl = currentData.imageurl;
 
-  if(typeof url === 'undefined' || !url){
+  if(_.isUndefined(url) || !url){
     return callback();
   }
 
@@ -80,7 +81,6 @@ function initOrMerge(project, data) {
   if (!project) {
     return new Project(data);
   }
-
   return merge(project, data);
 }
 
