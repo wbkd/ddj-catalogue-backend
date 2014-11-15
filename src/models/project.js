@@ -9,6 +9,7 @@ var projectSchema = new Schema({
       unique: true,
       'default': shortId.generate
   },
+  date: Date,
   publisher: String,
   url: {
     type: String,
@@ -19,12 +20,11 @@ var projectSchema = new Schema({
   byline: [String],
   visualform: [String],
   category: [String],
-  date: Date,
   imageurl: String,
   serverImageurl: String,
   tags: [String],
-  technology : String,
-  availability : String,
+  technology : [String],
+  availability : [String]
 });
 
 module.exports = mongoose.model('Project', projectSchema);

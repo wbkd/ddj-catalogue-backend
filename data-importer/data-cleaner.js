@@ -16,7 +16,7 @@ module.exports.stringToArray = function(str) {
     }
   });
 
-  return cleanedElements;
+  return cleanedElements.sort();
 }
 
 // convert 2.12.2014 to js date object
