@@ -7,6 +7,8 @@ if (typeof config.spreadsheetkey === 'undefined') {
 
 var Tabletop = require('tabletop');
 var mongoose = require('mongoose');
+mongoose.connect(config.db);
+var db = mongoose.connection;
 var merge = require('merge');
 var async = require('async');
 var winston = require('winston');
@@ -16,14 +18,12 @@ var path = require('path');
 var dataCleaner = require('./data-cleaner');
 var imageHandler = require('./image-handler');
 var Project = require('../src/models/project');
+var uiDataWriter = require('./ui-data-writer');
 
-var testmode = true;
-
-mongoose.connect(config.db);
-var db = mongoose.connection;
+var isLocalMode = true;
 
 winston.add(winston.transports.File, {
-  filename: path.resolve(__dirname, 'logs/importer.log');
+  filename: path.resolve(__dirname, 'logs/importer.log')
 });
 
 db.once('open', function callback() {
@@ -38,6 +38,7 @@ function updateDatabase(data, tabletop) {
   // updating all cleaned data
   async.each(cleanedData, updateData, function(err) {
     handleError(err);
+    uiDataWriter.writeFile();
     db.close();
   });
 }
@@ -85,7 +86,7 @@ function initOrMerge(project, data) {
 
 function getSpreadsheetData(cb) {
 
-  if (testmode) {
+  if (isLocalMode) {
     fs.readFile(path.resolve(__dirname, 'testdata.json'), function(err, data) {
       cb(JSON.parse(data));
     });
@@ -111,7 +112,10 @@ function cleanupData(projectData) {
   projectData.category = dataCleaner.stringToArray(projectData.category);
   projectData.tags = dataCleaner.stringToArray(projectData.tags);
   projectData.visualform = dataCleaner.stringToArray(projectData.visualform);
+  projectData.technology = dataCleaner.stringToArray(projectData.technology);
   projectData.date = dataCleaner.formatDate(projectData.date);
+
+  uiDataWriter.addData(projectData);
 
   return projectData;
 }

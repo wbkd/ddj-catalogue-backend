@@ -14,21 +14,19 @@ module.exports.createImage = function(project,cb){
 
 function downloadImage(project,cb){
 
-	var imageurl = project.imageurl;
+	var imageurl = project.imageurl,
+		filename = project._id + '.jpg',
+		filePath = path.resolve(imagesPath, filename);
 
 	if(typeof imageurl === 'undefined' || !imageurl){
-		// TODO: make screenshot if project has no image url
-		cb(project);
-		return false;
+		cb(project)
+  		return false;
 	}
 
 	request.head(imageurl, function(err, res, body){
     	var contentType = res.headers['content-type'];
     	// TODO ?: check if content type is valid image
 
-		var filename = project._id + '.jpg',
-			filePath = path.resolve(imagesPath, filename);
-			
 		request(imageurl)
 			.pipe(fs.createWriteStream(filePath))
 			.on('close', function(){

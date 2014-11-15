@@ -1,3 +1,4 @@
+var trim = require('trim');
 // from "foo, bar, zoo" to ['foo','bar','zoo']
 module.exports.stringToArray = function(str) {
 
@@ -9,7 +10,7 @@ module.exports.stringToArray = function(str) {
     cleanedElements = [];
 
   strArray.forEach(function(el) {
-    var trimedEl = el.replace(/\s/g, ''); 
+    var trimedEl = trim(el); 
     if(trimedEl){
       cleanedElements.push(trimedEl);
     }

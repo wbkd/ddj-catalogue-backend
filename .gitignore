@@ -1,4 +1,5 @@
 node_modules
 .DS_Store
 *.log
-public/images/*.jpg
+public/images
+public/data
