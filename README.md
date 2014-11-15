@@ -13,7 +13,7 @@ $ mongod --dbpath=/your/dbpath
 
 #### Import Spreadsheet
 ```
-$ KEY=your-spreadsheet-key node src/spreadsheet-importer.js
+$ KEY=your-spreadsheet-key node data-importer/index.js
 ```
 
 #### Start server
