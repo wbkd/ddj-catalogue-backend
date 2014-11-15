@@ -19,6 +19,7 @@
   "homepage": "https://github.com/wbkd/simple-spreadsheet-backend",
   "dependencies": {
     "async": "^0.9.0",
+    "cheerio": "^0.18.0",
     "hapi": "^7.5.0",
     "lodash": "^2.4.1",
     "merge": "^1.2.0",
