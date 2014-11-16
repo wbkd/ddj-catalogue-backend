@@ -18,6 +18,17 @@ module.exports.getAll = function(req, reply) {
   });
 };
 
+module.exports.getById = function(req, reply) {
+
+  var projectId = req.params.id;
+
+  Project.find({_id: projectId},function(err, projects) {
+    if (err) throw err;
+
+    reply(projects);
+  });
+};
+
 module.exports.query = function(req, reply) {
 
   

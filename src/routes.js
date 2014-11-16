@@ -11,6 +11,13 @@ var projectRoutes = [
 		}
 	},
 	{
+		method : 'get',
+		path : config.api + 'projects/{id}',
+		config : {
+			handler : ProjectController.getById
+		}
+	},
+	{
 		method : 'post',
 		path : config.api + 'projects',
 		config : {
