@@ -6,7 +6,7 @@ var defaultQueryOptions = {
   sortby: {
     date : -1
   }, 
-  items : 25, 
+  items : 1000, 
   offset : 0
 };
 
@@ -30,7 +30,6 @@ module.exports.getById = function(req, reply) {
 };
 
 module.exports.query = function(req, reply) {
-
   
   var payload = !Object.keys(req.payload).length ? {} : req.payload,
     options = merge(defaultQueryOptions,payload),

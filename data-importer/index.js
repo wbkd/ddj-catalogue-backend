@@ -21,7 +21,7 @@ var imageHandler = require('./image-handler');
 var Project = require('../src/models/project');
 var uiDataWriter = require('./uidata-handler');
 
-var isLocalMode = true;
+var isLocalMode = false;
 
 winston.add(winston.transports.File, {
   filename: path.resolve(__dirname, 'logs/importer.log')
