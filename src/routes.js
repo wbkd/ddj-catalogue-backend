@@ -39,7 +39,19 @@ var staticRoutes = [{
     description: 'Returns an image.',
     notes: ['static', 'images', 'upload']
   }
-}];
+},
+{
+	method: 'GET',
+	path: '/ui-data',
+	config: {
+    	handler: function(request, reply) {
+      		reply.file('data/ui-data.json');
+    	},
+    	description: 'Returns the UI data for the application.',
+    	notes: ['static', 'json', 'ui']
+ 	 }
+}
+];
 
 
 module.exports = [].concat(projectRoutes,staticRoutes);
