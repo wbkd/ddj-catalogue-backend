@@ -32,7 +32,7 @@ module.exports.getById = function(req, reply) {
 module.exports.query = function(req, reply) {
 
   
-  var payload = !Object.keys(req.payload).length ? {} : JSON.parse(req.payload),
+  var payload = !Object.keys(req.payload).length ? {} : req.payload,
     options = merge(defaultQueryOptions,payload),
     skip = options.offset * options.items;
 
