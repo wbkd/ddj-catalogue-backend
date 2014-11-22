@@ -24,6 +24,13 @@ var projectRoutes = [
 			handler : ProjectController.query
 		}
 	},
+  {
+    method : 'post',
+    path : config.api + 'projects/getbyids',
+    config : {
+      handler : ProjectController.getByIds
+    }
+  }
 
 
 ];

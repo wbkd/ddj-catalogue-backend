@@ -13,10 +13,10 @@ var server = new Hapi.Server(config.host, config.port, {
 	files: {
 	    // path for serving static files
 	    relativeTo: path.join(config.root, 'public')
-	},
+	}/*,
   debug: {
     request: ['received', 'error']
-  }
+  }*/
 });
 
 mongoose.connect(config.db);

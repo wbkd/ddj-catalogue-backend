@@ -21,10 +21,20 @@ module.exports.getAll = function(req, reply) {
 module.exports.getById = function(req, reply) {
 
   var projectId = req.params.id;
-
   Project.find({_id: projectId},function(err, projects) {
     if (err) throw err;
 
+    reply(projects);
+  });
+};
+
+// we use this function to return the data for a shared favorites list
+module.exports.getByIds = function(req, reply) {
+ 
+  var projectIds = req.payload.ids;
+
+  Project.find({_id: { $in : projectIds }},function(err, projects) {
+    if (err) throw err;
     reply(projects);
   });
 };
