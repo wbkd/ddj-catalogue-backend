@@ -1,9 +1,9 @@
 module.exports = {
   mail : {
-    user : '',
-    password : '',
-    host : '',
-    to : '',
-    from : ''
+    user : '', // email 
+    password : '', // email password
+    host : '', // smtp server
+    to : '', 
+    from : '' 
   }
 }

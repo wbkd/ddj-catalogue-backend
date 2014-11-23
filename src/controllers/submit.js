@@ -10,13 +10,13 @@ module.exports.submit = function(req, reply) {
     isValidUrl = urlPattern.test(projectUrl);
 
   if(!isValidUrl){
-    return reply(Hapi.error.badRequest({ error : 'not a valid url.' }));
+    return reply({ error: 'Bitte geben Sie eine gültige URL an.' });
   }
 
   Mailer.sendSubmitMail(projectUrl, function(error,message){
 
     if(error){
-      return reply(Hapi.error.badRequest({ error : 'mail server could not send mail.' })); 
+      return reply(Hapi.error.badRequest('Technische Störung. Projekt konnte nicht eingereicht werden.')); 
     }
 
     reply({message : 'successfully submitted'});

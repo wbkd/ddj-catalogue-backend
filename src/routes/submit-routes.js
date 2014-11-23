@@ -2,7 +2,7 @@ var SubmitController = require('../controllers/submit');
 var Mailer = require('../controllers/mailer');
 
 module.exports = [{
-    method: 'post',
+    method: 'POST',
     path: '/submit',
     config: {
       handler: SubmitController.submit,
