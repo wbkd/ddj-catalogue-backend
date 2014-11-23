@@ -1,14 +1,10 @@
-var Mailer = require('../controllers/mailer');
+var SubmitController = require('../controllers/submit');
 
 module.exports = [{
     method: 'post',
     path: '/submit',
     config: {
-      handler: function(request, reply) {
-        var projectUrl = request.payload.url;
-        Mailer.sendSubmitMail(projectUrl);
-        reply({message : 'successfully submitted'});
-      },
+      handler: SubmitController.submit,
       description: 'Submits a project',
       notes: ['submit']
     }
