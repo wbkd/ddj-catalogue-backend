@@ -21,6 +21,11 @@ $ KEY=your-spreadsheet-key node data-importer/index.js
 $ npm start
 ```
 
+## Important! 
+####Project Submits
+Rename the file `src/private-config-example.js` to `src/private-config.js` and enter your SMTP credentials in order to use the submit route.
+
+
 ## API
 
 #### Return all objects
