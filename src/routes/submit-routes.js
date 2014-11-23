@@ -1,4 +1,5 @@
 var SubmitController = require('../controllers/submit');
+var Mailer = require('../controllers/mailer');
 
 module.exports = [{
     method: 'post',
