@@ -27,11 +27,7 @@ Rename the file `src/private-config-example.js` to `src/private-config.js` and e
 
 ## API
 
-#### Return all objects
-
-`get` http://localhost:1337/api/v1/projects
-
-#### Filtered result
+#### Get Preview Data
 
 `post` http://localhost:1337/api/v1/projects
 
