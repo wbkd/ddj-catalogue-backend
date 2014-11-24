@@ -47,18 +47,24 @@ module.exports.query = function(req, reply) {
 
     options.filters = options.filters ? options.filters : {};
 
+  // only return count if its the first request
+  if(options.offset === 0){
+    return replyProjects(null,null);
+  }
+
   Project.count(options.filters)
-    .exec(function(err,count){
+    .exec(replyProjects);
 
-        Project
-          .find(options.filters)
-          .skip(skip)
-          .limit(options.items)
-          .sort(options.sortby)
-          .exec(function(err,projects){
-            if (err) throw err;
+  function replyProjects(err,count){
+    Project
+      .find(options.filters)
+      .skip(skip)
+      .limit(options.items)
+      .sort(options.sortby)
+      .exec(function(err,projects){
+        if (err) throw err;
 
-            reply({previews: projects, count : count});
-          });
-    });
+        reply({previews: projects, count : count});
+      });
+  }
 };
