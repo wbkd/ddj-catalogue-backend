@@ -17,10 +17,16 @@ function sendMail(content, subject, cb) {
   }, cb);
 }
 
-function sendSubmitMail(params,cb) {
+function sendProjectSubmitMail(params,cb) {
   var content = 'Hallo,\n\nfolgende URL wurde eingereicht:\n\n' + params.url + '\n\nAnmerkungen:\n\n' + params.description;
   sendMail(content, 'Projekteinreichung',cb);
 }
 
+function sendEmailSubmitMail(params,cb) {
+  var content = 'Hallo,\n\nfolgende E-Mail wurde für den Newsletter eingereicht:\n\n' + params.email;
+  sendMail(content, 'Newsletter-Eintrag',cb);
+}
+
 module.exports.sendMail = sendMail;
-module.exports.sendSubmitMail = sendSubmitMail;
+module.exports.sendProjectSubmitMail = sendProjectSubmitMail;
+module.exports.sendEmailSubmitMail = sendEmailSubmitMail;
