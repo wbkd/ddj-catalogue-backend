@@ -17,8 +17,8 @@ function sendMail(content, subject, cb) {
   }, cb);
 }
 
-function sendSubmitMail(url,cb) {
-  var content = 'Hallo,\n\nfolgende URL wurde eingereicht:\n\n' + url;
+function sendSubmitMail(params,cb) {
+  var content = 'Hallo,\n\nfolgende URL wurde eingereicht:\n\n' + params.url + '\n\nAnmerkungen:\n\n' + params.description;
   sendMail(content, 'Projekteinreichung',cb);
 }
 
