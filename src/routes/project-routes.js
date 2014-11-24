@@ -1,14 +1,7 @@
 var config = require('../config');
 var ProjectController = require('../controllers/project');
 
-module.exports = [  
-  {
-    method : 'GET',
-    path : config.api + 'projects',
-    config : {
-      handler : ProjectController.getAll
-    }
-  },
+module.exports = [ 
   {
     method : 'GET',
     path : config.api + 'projects/{id}',

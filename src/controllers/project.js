@@ -45,6 +45,10 @@ module.exports.query = function(req, reply) {
     options = merge(defaultQueryOptions,payload),
     skip = options.offset * options.items;
 
+    options.filters = options.filters ? options.filters : {};
+
+    console.log(options)
+
   Project
     .find(options.filters)
     .skip(skip)
@@ -52,6 +56,8 @@ module.exports.query = function(req, reply) {
     .sort(options.sortby)
     .exec(function(err,projects){
       if (err) throw err;
+
+      console.log('found',projects.length,'items');
 
       reply(projects);
     });
