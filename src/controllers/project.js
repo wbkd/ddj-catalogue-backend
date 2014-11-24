@@ -47,19 +47,18 @@ module.exports.query = function(req, reply) {
 
     options.filters = options.filters ? options.filters : {};
 
-    console.log(options)
+  Project.count(options.filters)
+    .exec(function(err,count){
 
-  Project
-    .find(options.filters)
-    .skip(skip)
-    .limit(options.items)
-    .sort(options.sortby)
-    .exec(function(err,projects){
-      if (err) throw err;
+        Project
+          .find(options.filters)
+          .skip(skip)
+          .limit(options.items)
+          .sort(options.sortby)
+          .exec(function(err,projects){
+            if (err) throw err;
 
-      console.log('found',projects.length,'items');
-
-      reply(projects);
+            reply({previews: projects, count : count});
+          });
     });
-
 };
