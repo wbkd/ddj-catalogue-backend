@@ -25,18 +25,15 @@ var index = 0;
 var projects = [];
 
 db.once('open', function callback() {
-
+  // update all projects
   Project.find({}).exec(function(err,projectData){
-
     if(err){
       winston.error(err);
       return false;
     }
-
     projects = projectData;
     handleUrls();
   });
-
 });
 
 function handleUrls() {
@@ -49,14 +46,17 @@ function handleUrls() {
   var currentProject = projects[index++];
 
   async.parallel([
+      // get twitter sharing counts
       function(callback) {
         getSocialCounts({ url: currentProject.url, socialName: 'twitter'}, callback);
       },
+      // get facebook sharing counts
       function(callback) {
         getSocialCounts({ url: currentProject.url, socialName: 'facebook'}, callback);
       }
     ],
 
+    // update project model in database
     function(err, results) {
       var twitter = parseInt(results[0].count),
         facebook = parseInt(results[1][0].total_count),
@@ -66,15 +66,14 @@ function handleUrls() {
           console.log(currentProject.url,': twitter ',twitter,', faceboob',facebook);
           setTimeout(handleUrls, 200);  
         });
-
-        
     });
 }
 
+
+
+// helper method to get social counts
 function getSocialCounts(params, callback) {
-
   var url = apis[params.socialName].replace('{{url}}', params.url)
-
   request(url, function(err, res, body) {
     callback(err, JSON.parse(body));
   });
