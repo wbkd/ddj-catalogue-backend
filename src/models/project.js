@@ -24,7 +24,12 @@ var projectSchema = new Schema({
   serverImageurl: String,
   tags: [String],
   technology : [String],
-  availability : [String]
+  availability : [String],
+  social : {
+    facebook : Number,
+    twitter : Number,
+    sum : Number
+  }
 });
 
 module.exports = mongoose.model('Project', projectSchema);

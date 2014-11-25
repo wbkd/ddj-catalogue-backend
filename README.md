@@ -17,6 +17,11 @@ $ mongod --dbpath=/your/dbpath
 $ KEY=your-spreadsheet-key node data-importer/index.js
 ```
 
+#### Update Socialcounts
+```
+$ node social-bot/index.js
+```
+
 #### Start server
 ```
 $ npm start
