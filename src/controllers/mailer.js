@@ -1,4 +1,5 @@
 var email = require('emailjs');
+var config = require('../config');
 var privateConfig = require('../private-config');
 var mailchimp = require('../helper/mailchimp.js');
 
@@ -25,8 +26,9 @@ function sendProjectSubmitMail(params,cb) {
 }
 
 function sendEmailSubmitMail(params,cb) {
-  // subscribes email to list
-  mailchimp.subscribe(params);
+  if(config.useMailchimp){
+    mailchimp.subscribe(params);
+  }  
   var content = 'Hallo,\n\nfolgende E-Mail wurde für den Newsletter eingereicht:\n\n' + params.email;
   sendMail(content, 'Newsletter-Eintrag',cb);
 }
