@@ -4,6 +4,10 @@ module.exports = {
     password : '', // email password
     host : '', // smtp server
     to : '', 
-    from : '' 
+    from : ''
+  },
+  mailchimp: {
+    apikey : '', 
+    listID : ''
   }
 }

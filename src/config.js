@@ -7,7 +7,8 @@ var config = {
     host: 'localhost',
     spreadsheetkey : process.env.KEY,
     api: '/api/v1/',
-    db: 'mongodb://localhost/ddjcat'
+    db: 'mongodb://localhost/ddjcat',
+    useMailchimp: false
   },
  
   production:  {
@@ -16,7 +17,8 @@ var config = {
     host: 'localhost',
     spreadsheetkey : process.env.KEY,
     api: '/api/v1/',
-    db: 'mongodb://localhost/ddjcat'
+    db: 'mongodb://localhost/ddjcat',
+    useMailchimp: true
   }
 };
 

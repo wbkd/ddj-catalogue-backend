@@ -27,9 +27,11 @@ $ node social-bot/index.js
 $ npm start
 ```
 
-####Project Submits
+#### Project Submits
 Rename the file `src/private-config-example.js` to `src/private-config.js` and enter your SMTP credentials in order to use the submit route.
 
+#### Mailchimp Support
+If you want to use automated mailchimp subscription set `useMailchimp:true` in `src/config.js` and add your apikey and the ID of the mailchimp-list to your private config file (`src/private-config.js`). You can find the mailchimp related code under `src/helper/mailchimp.js`.
 
 ## API
 
