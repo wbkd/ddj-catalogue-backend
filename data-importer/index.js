@@ -37,7 +37,7 @@ function updateDatabase(data, tabletop) {
   var cleanedData = data.map(cleanupData);
 
   // updating all cleaned data
-  async.each(cleanedData, updateData, function(err) {
+  async.eachSeries(cleanedData, updateData, function(err) {
     handleError(err);
     uiDataWriter.writeFile();
 
@@ -64,9 +64,9 @@ function updateData(currentData, callback) {
 
       project = initOrMerge(project, currentData);
 
-      imageHandler.createImage(project, function(project){
-        saveObject(project,callback);  
-      });
+        imageHandler.createImage(project, function(project){
+          saveObject(project,callback);  
+        });
       
     });
 }
@@ -109,8 +109,6 @@ function handleError(err) {
 }
 
 function cleanupData(projectData) {
-
-  console.log(projectData);
 
   projectData.byline = dataCleaner.stringToArray(projectData.byline);
   projectData.category = dataCleaner.stringToArray(projectData.category);

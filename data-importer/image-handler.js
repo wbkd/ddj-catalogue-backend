@@ -4,6 +4,7 @@ var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var imagesPath = path.resolve(__dirname, '../public/images/');
+var urlPattern = new RegExp(/^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/);
 
 module.exports.createImage = function(project, cb) {
 
@@ -31,11 +32,12 @@ function checkImageUrl(project, cb) {
 			var $ = cheerio.load(body),
 				fbImageurl = $('meta[property="og:image"]').attr('content');
 
-			if(!_.isUndefined(fbImageurl)){
+			if(false && !_.isUndefined(fbImageurl) && urlPattern.test(fbImageurl) ){
 				project.imageurl = fbImageurl;
 				downloadImage(project, cb);
+				
 			}else{
-				cb(project);
+					cb(project);
 			}
 			
 		});
@@ -56,7 +58,8 @@ function downloadImage(project, cb) {
 	var filename = project._id + '.jpg',
 		filePath = path.resolve(imagesPath, filename);
 
-	console.log(project.imageurl, 'iurl')
+	console.log(project.imageurl, 'url')
+
 
 
 	request(project.imageurl)
