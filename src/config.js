@@ -20,7 +20,7 @@ var config = {
     api: '/api/v1/',
     db: 'mongodb://localhost/ddjcat',
     useMailchimp: true,
-    filesPath : path.resolve(__dirname, '../../ddjcat-backend-data/public')
+    filesPath : path.resolve(__dirname, '../../../ddjcat-backend-data/public')
   }
 };
 
