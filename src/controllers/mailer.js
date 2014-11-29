@@ -1,6 +1,6 @@
 var email = require('emailjs');
 var config = require('../config');
-var privateConfig = require('../private-config');
+var privateConfig = require('../private-config.js');
 var mailchimp = require('../helper/mailchimp.js');
 
 // mail server config
