@@ -12,7 +12,7 @@ winston.add(winston.transports.File, {
 try { 
   var mailchimpApi = new MailChimpAPI(apikey, { version : '2.0' });
 } catch (error) {
-  winston.error('mailchimp:', error.message);
+  winston.error('mailchimp', error.message);
 }
 
 function subscribe(params){
