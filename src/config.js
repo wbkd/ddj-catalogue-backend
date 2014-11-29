@@ -1,24 +1,26 @@
-var Path = require('path');
+var path = require('path');
 
 var config = {
   development: {
-    root: Path.resolve(__dirname, '../'),
+    root: path.resolve(__dirname, '../'),
     port: 1337,
     host: 'localhost',
     spreadsheetkey : process.env.KEY,
     api: '/api/v1/',
     db: 'mongodb://localhost/ddjcat',
-    useMailchimp: false
+    useMailchimp: false,
+    filesPath : path.resolve(__dirname, '../public')
   },
  
   production:  {
-    root: Path.resolve(__dirname, '../'),
+    root: path.resolve(__dirname, '../'),
     port: 1337,
     host: 'localhost',
     spreadsheetkey : process.env.KEY,
     api: '/api/v1/',
     db: 'mongodb://localhost/ddjcat',
-    useMailchimp: true
+    useMailchimp: true,
+    filesPath : path.resolve(__dirname, '../../ddjcat-backend-data/public')
   }
 };
 

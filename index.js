@@ -7,12 +7,11 @@ var path = require('path');
 var routes = require('./src/routes');
 var config = require('./src/config');
 
-
 var server = new Hapi.Server(config.host, config.port, { 
 	cors: true,
 	files: {
 	    // path for serving static files
-	    relativeTo: path.join(config.root, 'public')
+	    relativeTo: config.filesPath
 	}/*,
   debug: {
     request: ['received', 'error']

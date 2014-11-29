@@ -63,10 +63,10 @@ function updateData(currentData, callback) {
       handleError(err);
 
       project = initOrMerge(project, currentData);
-
-        imageHandler.createImage(project, function(project){
-          saveObject(project,callback);  
-        });
+      
+      imageHandler.createImage(project, function(project){
+        saveObject(project,callback);  
+      });
       
     });
 }
