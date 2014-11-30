@@ -57,7 +57,7 @@ function downloadImage(project, cb) {
 	var filename = project._id + '.jpg',
 		filePath = path.resolve(imagesPath, filename);
 
-	console.log('download image:',project.imageurl);
+	console.log('download image:',project.imageurl)
 
 	request({uri : project.imageurl , headers : headers, method: 'GET'})
 		.on('error', function(err){

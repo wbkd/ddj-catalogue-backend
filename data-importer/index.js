@@ -24,7 +24,7 @@ var uiDataWriter = require('./uidata-handler');
 var isLocalMode = false;
 
 winston.add(winston.transports.File, {
-  filename: path.resolve(__dirname, 'logs/importer.log')
+  filename: path.resolve(__dirname, '../logs/importer.log')
 });
 
 db.once('open', function callback() {
