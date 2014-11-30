@@ -13,8 +13,10 @@ $ mongod --dbpath=/your/dbpath
 ```
 
 #### Import Spreadsheet
+Rename the file `src/private-config-example.js` to `src/private-config.js` and enter your spreadsheet api key.
+Then you can import the data with:
 ```
-$ KEY=your-spreadsheet-key node data-importer/index.js
+$ node data-importer/index.js
 ```
 
 #### Update Socialcounts
@@ -43,7 +45,7 @@ If you want to use automated mailchimp subscription set `useMailchimp:true` in `
 
 ```json
 {
-  "filter" : {},
+  "filters" : {},
   "sortby": { "date" : -1 }, 
   "items" : 25, 
   "offset" : 0

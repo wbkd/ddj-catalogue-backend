@@ -1,6 +1,7 @@
 var config = require('../src/config');
+var privateConfig = require('../src/private-config');
 
-if (typeof config.spreadsheetkey === 'undefined') {
+if (typeof privateConfig.spreadsheet.apikey === 'undefined') {
   console.log('Error:\nPlease specify a google spreadsheet key via:\nKEY=your-key-here node data-importer/index.js');
   return false;
 }
@@ -95,7 +96,7 @@ function getSpreadsheetData(cb) {
   } else {
 
     Tabletop.init({
-      key: config.spreadsheetkey,
+      key: privateConfig.spreadsheet.apikey,
       callback: cb,
       simpleSheet: true
     });

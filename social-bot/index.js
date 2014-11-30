@@ -63,7 +63,7 @@ function handleUrls() {
         updateData = { social : { twitter : twitter, facebook : facebook, sum : twitter + facebook } };
 
         Project.update({_id : currentProject._id},updateData).exec(function(err,updatedItems){
-          console.log(currentProject.url,': twitter ',twitter,', faceboob',facebook);
+          winston.info(currentProject.url,': twitter ',twitter,', faceboob',facebook);
           setTimeout(handleUrls, 200);  
         });
     });
