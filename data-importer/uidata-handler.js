@@ -1,6 +1,8 @@
 var fs = require('fs');
 var path = require('path');
 var _ = require('lodash');
+var config = require('../src/config');
+
 var result = {
   byline : [],
   category : [],
@@ -26,5 +28,5 @@ module.exports.writeFile = function(){
   });
   console.log(result);
 
-  fs.writeFile(path.resolve(__dirname,'../public/data/ui-data.json'), JSON.stringify(result), function(err){console.log(err)});
+  fs.writeFile(config.filesPath + '/data/ui-data.json', JSON.stringify(result), function(err){console.log(err)});
 }

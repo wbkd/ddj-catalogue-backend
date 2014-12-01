@@ -1,6 +1,7 @@
 var config = require('../src/config');
+var privateConfig = require('../src/private-config');
 
-if (typeof config.spreadsheetkey === 'undefined') {
+if (typeof privateConfig.spreadsheet.apikey === 'undefined') {
   console.log('Error:\nPlease specify a google spreadsheet key via:\nKEY=your-key-here node data-importer/index.js');
   return false;
 }
@@ -24,7 +25,7 @@ var uiDataWriter = require('./uidata-handler');
 var isLocalMode = false;
 
 winston.add(winston.transports.File, {
-  filename: path.resolve(__dirname, 'logs/importer.log')
+  filename: path.resolve(__dirname, '../logs/importer.log')
 });
 
 db.once('open', function callback() {
@@ -37,7 +38,7 @@ function updateDatabase(data, tabletop) {
   var cleanedData = data.map(cleanupData);
 
   // updating all cleaned data
-  async.each(cleanedData, updateData, function(err) {
+  async.eachSeries(cleanedData, updateData, function(err) {
     handleError(err);
     uiDataWriter.writeFile();
 
@@ -63,7 +64,7 @@ function updateData(currentData, callback) {
       handleError(err);
 
       project = initOrMerge(project, currentData);
-
+      
       imageHandler.createImage(project, function(project){
         saveObject(project,callback);  
       });
@@ -95,7 +96,7 @@ function getSpreadsheetData(cb) {
   } else {
 
     Tabletop.init({
-      key: config.spreadsheetkey,
+      key: privateConfig.spreadsheet.apikey,
       callback: cb,
       simpleSheet: true
     });

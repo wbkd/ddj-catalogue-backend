@@ -1,0 +1,10 @@
+npm install
+
+passed=$?
+if [[ $passed != 0 ]]; then
+    # test failed, exit. app's working tree on the server will be reset.
+    exit $passed
+fi
+
+cp ./src/private-config-example.js ./src/private-config.js
+npm start

@@ -9,5 +9,8 @@ module.exports = {
   mailchimp: {
     apikey : '', 
     listID : ''
+  },
+  spreadsheet: {
+    apikey: ''
   }
 }
