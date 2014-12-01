@@ -56,7 +56,9 @@ function downloadImage(project, cb) {
 	var filename = project._id + '.jpg',
 		filePath = path.resolve(imagesPath, filename);
 
-	console.log(project.imageurl, 'iurl')
+	console.log(project, 'iurl')
+
+	if(project.imageurl.indexOf('http://') < 0) {project.imageurl = project.url + project.imageurl};
 
 
 	request(project.imageurl)

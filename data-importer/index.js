@@ -110,8 +110,6 @@ function handleError(err) {
 
 function cleanupData(projectData) {
 
-  console.log(projectData);
-
   projectData.byline = dataCleaner.stringToArray(projectData.byline);
   projectData.category = dataCleaner.stringToArray(projectData.category);
   projectData.tags = dataCleaner.stringToArray(projectData.tags);

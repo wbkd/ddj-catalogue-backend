@@ -24,6 +24,7 @@ module.exports.writeFile = function(){
       result[key] = result[key].sort();
       result[key] = _.uniq(result[key], true);
   });
+  console.log(result);
 
-  fs.writeFile(path.resolve(__dirname,'../public/data/ui-data.json'), JSON.stringify(result), function(err){});
+  fs.writeFile(path.resolve(__dirname,'../public/data/ui-data.json'), JSON.stringify(result), function(err){console.log(err)});
 }
