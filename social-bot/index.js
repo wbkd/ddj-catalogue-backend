@@ -7,7 +7,7 @@ var config = require('../src/config');
 // logging
 var winston = require('winston');
 winston.add(winston.transports.File, {
-  filename: path.resolve(__dirname, 'logs/importer.log')
+  filename: path.resolve(__dirname, '../logs/importer.log')
 });
 
 // database
