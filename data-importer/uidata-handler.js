@@ -26,7 +26,8 @@ module.exports.writeFile = function(){
       result[key] = result[key].sort();
       result[key] = _.uniq(result[key], true);
   });
-  console.log(result);
 
-  fs.writeFile(config.filesPath + '/data/ui-data.json', JSON.stringify(result), function(err){console.log(err)});
+  fs.writeFile(config.filesPath + '/data/ui-data.json', JSON.stringify(result), function(err){
+    if(err)console.log(err);
+  });
 }

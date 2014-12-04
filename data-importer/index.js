@@ -34,8 +34,16 @@ db.once('open', function callback() {
 
 function updateDatabase(data, tabletop) {
 
-  winston.info('Found %s datasets', data.length);
-  var cleanedData = data.map(cleanupData);
+  var katalogData = tabletop.sheets('katalog').elements,
+    faqData = tabletop.sheets('faq').elements;
+
+  fs.writeFile(config.filesPath + '/data/faq-data.json', JSON.stringify(faqData), function(err){
+    if(err)console.log(err)
+  });  
+
+  winston.info('Found %s datasets', katalogData.length);
+  
+  var cleanedData = katalogData.map(cleanupData);
 
   // updating all cleaned data
   async.eachSeries(cleanedData, updateData, function(err) {
@@ -94,11 +102,10 @@ function getSpreadsheetData(cb) {
       cb(JSON.parse(data));
     });
   } else {
-
     Tabletop.init({
       key: privateConfig.spreadsheet.apikey,
       callback: cb,
-      simpleSheet: true
+      simpleSheet: false
     });
   }
 }

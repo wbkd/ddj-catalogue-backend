@@ -20,5 +20,16 @@ module.exports = [{
         description: 'Returns the UI data for the application.',
         notes: ['static', 'json', 'ui']
      }
+  },
+  {
+    method: 'GET',
+    path: '/faq-data',
+    config: {
+        handler: function(request, reply) {
+            reply.file('data/faq-data.json');
+        },
+        description: 'Returns the FAQ data for the application.',
+        notes: ['static', 'json', 'faq']
+     }
   }
 ];
