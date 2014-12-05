@@ -118,13 +118,18 @@ function handleError(err) {
 
 function cleanupData(projectData) {
 
+  
+
   projectData.byline = dataCleaner.stringToArray(projectData.byline);
   projectData.category = dataCleaner.stringToArray(projectData.category);
   projectData.tags = dataCleaner.stringToArray(projectData.tags);
   projectData.visualform = dataCleaner.stringToArray(projectData.visualformclean);
   projectData.technology = dataCleaner.stringToArray(projectData.technology);
   projectData.date = dataCleaner.formatDate(projectData.date);
+  projectData.public = projectData.public ? !!parseInt(projectData.public) : true;
 
+
+  console.log(projectData.public)
   uiDataWriter.addData(projectData);
 
   return projectData;

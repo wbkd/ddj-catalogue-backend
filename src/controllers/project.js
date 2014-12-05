@@ -47,6 +47,9 @@ module.exports.query = function(req, reply) {
 
     options.filters = options.filters ? options.filters : {};
 
+    // only return public projects
+    options.filters.public = true; 
+
   // only return count if its the first request
   if(options.offset === 0){
     return replyProjects(null,null);

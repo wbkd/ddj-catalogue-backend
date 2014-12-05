@@ -25,6 +25,10 @@ var projectSchema = new Schema({
   tags: [String],
   technology : [String],
   availability : [String],
+  public : {
+    type : Boolean,
+    'default' : true
+  },
   social : {
     facebook : Number,
     twitter : Number,
