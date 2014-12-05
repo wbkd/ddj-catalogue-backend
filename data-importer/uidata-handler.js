@@ -8,7 +8,8 @@ var result = {
   category : [],
   tags : [],
   visualform : [],
-  technology : []
+  technology : [],
+  publisher : []
 }
 
 module.exports.addData = function(project){
@@ -18,7 +19,7 @@ module.exports.addData = function(project){
         result[key] = result[key].concat(value);
       }
     });
-}
+};
 
 module.exports.writeFile = function(){
 
@@ -30,4 +31,4 @@ module.exports.writeFile = function(){
   fs.writeFile(config.filesPath + '/data/ui-data.json', JSON.stringify(result), function(err){
     if(err)console.log(err);
   });
-}
+};

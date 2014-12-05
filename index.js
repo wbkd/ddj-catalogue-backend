@@ -8,14 +8,12 @@ var routes = require('./src/routes');
 var config = require('./src/config');
 
 var server = new Hapi.Server(config.host, config.port, { 
-	cors: true,
+	cors: config.cors,
 	files: {
 	    // path for serving static files
 	    relativeTo: config.filesPath
-	}/*,
-  debug: {
-    request: ['received', 'error']
-  }*/
+	},
+  debug: false //config.debug
 });
 
 mongoose.connect(config.db);

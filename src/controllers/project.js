@@ -45,18 +45,24 @@ module.exports.query = function(req, reply) {
     options = merge(defaultQueryOptions,payload),
     skip = options.offset * options.items;
 
-    options.filters = options.filters ? options.filters : {};
+  options.filters = options.filters ? options.filters : {};
 
-    // only return public projects
-    options.filters.public = true; 
+  // only return public projects
+  options.filters.public = true; 
+
+  /*Project.collection.distinct('publisher', function(err,bs){
+    console.log(bs)
+  });*/
 
   // only return count if its the first request
-  if(options.offset === 0){
-    return replyProjects(null,null);
+  if(parseInt(options.offset) === 0){
+    Project.count(options.filters)
+    .exec(replyProjects);
+
+    return false;
   }
 
-  Project.count(options.filters)
-    .exec(replyProjects);
+  replyProjects(null,null);
 
   function replyProjects(err,count){
     Project
@@ -66,7 +72,7 @@ module.exports.query = function(req, reply) {
       .sort(options.sortby)
       .exec(function(err,projects){
         if (err) throw err;
-
+        console.log(count);
         reply({previews: projects, count : count});
       });
   }

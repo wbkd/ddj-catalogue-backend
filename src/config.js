@@ -3,24 +3,28 @@ var path = require('path');
 var config = {
   development: {
     root: path.resolve(__dirname, '../'),
+    cors : true,
     port: 1337,
     host: 'localhost',
-    spreadsheetkey : process.env.KEY,
     api: '/api/v1/',
     db: 'mongodb://localhost/ddjcat',
     useMailchimp: false,
-    filesPath : path.resolve(__dirname, '../public')
+    filesPath : path.resolve(__dirname, '../public'),
+    debug : {
+      request: ['received', 'error', 'handler']
+    }
   },
  
   production:  {
     root: path.resolve(__dirname, '../'),
+    cors : false,
     port: 1337,
     host: 'localhost',
-    spreadsheetkey : process.env.KEY,
     api: '/api/v1/',
     db: 'mongodb://localhost/ddjcat',
     useMailchimp: true,
-    filesPath : path.resolve(__dirname, '../../../ddjcat-backend-data/public')
+    filesPath : path.resolve(__dirname, '../../../ddjcat-backend-data/public'),
+    debug : false
   }
 };
 

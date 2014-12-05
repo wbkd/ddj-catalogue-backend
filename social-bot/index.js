@@ -55,11 +55,10 @@ function handleUrls() {
         getSocialCounts({ url: currentProject.url, socialName: 'facebook'}, callback);
       }
     ],
-
     // update project model in database
     function(err, results) {
       var twitter = parseInt(results[0].count),
-        facebook = parseInt(results[1][0].total_count),
+        facebook = parseInt(results[1][0].share_count) + parseInt(results[1][0].like_count),
         updateData = { social : { twitter : twitter, facebook : facebook, sum : twitter + facebook } };
 
         Project.update({_id : currentProject._id},updateData).exec(function(err,updatedItems){

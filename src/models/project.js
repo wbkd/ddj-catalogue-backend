@@ -10,7 +10,8 @@ var projectSchema = new Schema({
       'default': shortId.generate
   },
   date: Date,
-  publisher: String,
+  publisher: [String],
+  organisation: [String],
   url: {
     type: String,
     unique: true
