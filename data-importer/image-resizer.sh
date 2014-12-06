@@ -1,0 +1,1 @@
+mogrify -path ../tmp -resize 350x350\> -quality 75 -format jpg ../public/images/*.jpg

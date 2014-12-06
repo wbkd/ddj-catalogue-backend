@@ -1,5 +1,6 @@
 var Project = require('../models/project.js');
 var merge = require('merge');
+var async = require('async');
 
 var defaultQueryOptions = {
   filters : {},
@@ -50,21 +51,33 @@ module.exports.query = function(req, reply) {
   // only return public projects
   options.filters.public = true; 
 
-  /*Project.collection.distinct('publisher', function(err,bs){
-    console.log(bs)
-  });*/
 
+  
   // only return count if its the first request
   if(parseInt(options.offset) === 0){
-    Project.count(options.filters)
-    .exec(replyProjects);
+    Project.find(options.filters)
+    .exec(function(err,projects){
+
+      var count = projects.length;
+
+      // TODO: is there a better way to create the uidata? 
+      async.parallel([
+        function(cb){distinct('publisher',options.filters,cb)},
+        function(cb){distinct('byline',options.filters,cb)},
+        function(cb){distinct('visualform',options.filters,cb)},
+        function(cb){distinct('category',options.filters,cb)}
+        ],function(err,uidata){
+          replyProjects(err, count, { publisher : uidata[0], byline: uidata[1],visualform: uidata[2], category: uidata[3] });
+      });
+
+    });
 
     return false;
   }
 
-  replyProjects(null,null);
+  replyProjects(null,null,null);
 
-  function replyProjects(err,count){
+  function replyProjects(err,count,uidata){
     Project
       .find(options.filters)
       .skip(skip)
@@ -72,8 +85,13 @@ module.exports.query = function(req, reply) {
       .sort(options.sortby)
       .exec(function(err,projects){
         if (err) throw err;
-        console.log(count);
-        reply({previews: projects, count : count});
+        reply({previews: projects, count : count, uidata : uidata});
       });
   }
 };
+
+function distinct(key,filter,cb){
+  Project.collection.distinct(key,filter, function(err,result){
+    cb(err,result);
+  });
+}

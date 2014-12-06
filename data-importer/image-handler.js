@@ -55,7 +55,8 @@ function downloadImage(project, cb) {
 	// 	var contentType = res.headers['content-type'];
 	// TODO ?: check if content type is valid image
 
-	console.log('download image', project.imageurl)
+	console.log('download image', project.imageurl);
+	
 	var filename = project._id + '.jpg',
 		filePath = path.resolve(imagesPath, filename);
 
