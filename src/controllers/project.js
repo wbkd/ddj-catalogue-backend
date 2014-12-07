@@ -70,6 +70,8 @@ module.exports.query = function(req, reply) {
           replyProjects(err, count, { publisher : uidata[0], byline: uidata[1],visualform: uidata[2], category: uidata[3] });
       });
 
+    //replyProjects(err,count,null)
+
     });
 
     return false;
