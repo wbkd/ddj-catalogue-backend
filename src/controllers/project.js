@@ -36,6 +36,7 @@ module.exports.getByIds = function(req, reply) {
 
   Project.find({_id: { $in : projectIds }},function(err, projects) {
     if (err) throw err;
+    
     reply(projects);
   });
 };
@@ -51,35 +52,19 @@ module.exports.query = function(req, reply) {
   // only return public projects
   options.filters.public = true; 
 
-
-  
   // only return count if its the first request
   if(parseInt(options.offset) === 0){
-    Project.find(options.filters)
-    .exec(function(err,projects){
-
-      var count = projects.length;
-
-      // TODO: is there a better way to create the uidata? 
-      async.parallel([
-        function(cb){distinct('publisher',options.filters,cb)},
-        function(cb){distinct('byline',options.filters,cb)},
-        function(cb){distinct('visualform',options.filters,cb)},
-        function(cb){distinct('category',options.filters,cb)}
-        ],function(err,uidata){
-          replyProjects(err, count, { publisher : uidata[0], byline: uidata[1],visualform: uidata[2], category: uidata[3] });
-      });
-
-    //replyProjects(err,count,null)
-
+    Project.count(options.filters)
+    .exec(function(err,count){
+      replyProjects(err,count)
     });
 
     return false;
   }
 
-  replyProjects(null,null,null);
+  replyProjects(null,null);
 
-  function replyProjects(err,count,uidata){
+  function replyProjects(err,count){
     Project
       .find(options.filters)
       .skip(skip)
@@ -92,8 +77,22 @@ module.exports.query = function(req, reply) {
   }
 };
 
+
+/*
+
+async.parallel([
+  function(cb){distinct('publisher',options.filters,cb)},
+  function(cb){distinct('byline',options.filters,cb)},
+  function(cb){distinct('visualform',options.filters,cb)},
+  function(cb){distinct('category',options.filters,cb)}
+  ],function(err,uidata){
+    replyProjects(err, count, { publisher : uidata[0], byline: uidata[1],visualform: uidata[2], category: uidata[3] });
+});
+
 function distinct(key,filter,cb){
   Project.collection.distinct(key,filter, function(err,result){
     cb(err,result);
   });
 }
+
+*/

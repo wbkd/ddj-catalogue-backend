@@ -4,7 +4,7 @@ var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var config = require('../src/config');
-var imagesPath = config.filesPath + '/images';
+var imagesPath = config.filesPath + '/raw_images';
 var urlPattern = new RegExp(/^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\!\w \.-]*)*\/?$/);
 var httpPattern = new RegExp(/^(https?:\/\/)/);
 
@@ -14,10 +14,9 @@ module.exports.createImage = function(project, cb) {
 
 	// only download image if there if we dont have one
 	if (_.isUndefined(project.serverImageurl)) {
-		
 		checkImageUrl(project, cb);
 	} else {
-		cb(project);
+		cb(null,project);
 	}
 }
 
@@ -31,7 +30,7 @@ function checkImageUrl(project, cb) {
 		request({uri : project.url, headers : headers, method: 'GET'}, function(err, res, body) {
 			if(err){
 				console.log('request error', err);
-				return cb(project);
+				return cb(null,project);
 			}
 
 			var $ = cheerio.load(body),
@@ -41,7 +40,7 @@ function checkImageUrl(project, cb) {
 				project.imageurl = fbImageurl;
 				downloadImage(project, cb);
 			}else{
-				cb(project);
+				cb(null,project);
 			}
 			
 		});
@@ -51,25 +50,33 @@ function checkImageUrl(project, cb) {
 }
 
 function downloadImage(project, cb) {
-	//request.head(imageurl, function(err, res, body){
-	// 	var contentType = res.headers['content-type'];
-	// TODO ?: check if content type is valid image
-
-	console.log('download image', project.imageurl);
-	
-	var filename = project._id + '.jpg',
-		filePath = path.resolve(imagesPath, filename);
 
 	if(project.imageurl.indexOf('http://') < 0) {project.imageurl = project.url + project.imageurl};
 
-	request({uri : project.imageurl , headers : headers, method: 'GET'})
-		.on('error', function(err){
-			console.log(err);
-			return cb(project);
-		})
-		.pipe(fs.createWriteStream(filePath))
-		.on('close', function() {
-			project.serverImageurl = filename;
-			cb(project);
-		});
+	request.head(project.imageurl, function(err, res, body){
+
+		// only download images
+		var contentType = res.headers['content-type'];
+		if(contentType.indexOf('image') !== 0){
+			return cb(null,project);
+		}
+
+		console.log('download image', project.imageurl);
+		
+		var filename = project._id + '.jpg',
+			filePath = path.resolve(imagesPath, filename);
+
+		
+
+		request({uri : project.imageurl , headers : headers, method: 'GET'})
+			.on('error', function(err){
+				console.log('image download error', err);
+				return cb(null,project);
+			})
+			.pipe(fs.createWriteStream(filePath))
+			.on('close', function() {
+				project.serverImageurl = filename;
+				cb(null,project);
+			});
+	});
 }

@@ -1,3 +1,10 @@
+/*
+  
+  we don't use this anymore.
+
+ */
+
+
 var request = require('request');
 var async = require('async');
 var path = require('path');
@@ -67,7 +74,6 @@ function handleUrls() {
         });
     });
 }
-
 
 
 // helper method to get social counts

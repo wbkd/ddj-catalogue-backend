@@ -1,16 +1,13 @@
 var fs = require('fs');
-var path = require('path');
 var _ = require('lodash');
 var config = require('../src/config');
 
 var result = {
   byline : [],
   category : [],
-  tags : [],
   visualform : [],
-  technology : [],
   publisher : []
-}
+};
 
 module.exports.addData = function(project){
     Object.keys(project).forEach(function(key,i){

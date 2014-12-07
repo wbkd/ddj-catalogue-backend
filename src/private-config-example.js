@@ -11,6 +11,6 @@ module.exports = {
     listID : ''
   },
   spreadsheet: {
-    apikey: ''
+    id: ''
   }
 }

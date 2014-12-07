@@ -19,9 +19,10 @@ Then you can import the data with:
 $ node data-importer/index.js
 ```
 
-#### Update Socialcounts
+If you don't want to update the social counts, do:
+
 ```
-$ node social-bot/index.js
+$ node data-importer/index.js --nosocial
 ```
 
 #### Start server
