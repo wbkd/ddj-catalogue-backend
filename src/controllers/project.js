@@ -72,7 +72,7 @@ module.exports.query = function(req, reply) {
       .sort(options.sortby)
       .exec(function(err,projects){
         if (err) throw err;
-        reply({previews: projects, count : count, uidata : uidata});
+        reply({previews: projects, count : count});
       });
   }
 };

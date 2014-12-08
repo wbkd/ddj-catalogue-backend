@@ -25,7 +25,9 @@ var config = {
     db: 'mongodb://localhost/ddjcat',
     useMailchimp: true,
     filesPath : path.resolve(__dirname, '../../../ddjcat-backend-data/public'),
-    debug : false,
+    debug : {
+      request: ['error']
+    },
     imageResizerPath : '/home/webkid/projects/striderapps/ddjcat-backend-data/public/image-resizer.sh'
   }
 };
