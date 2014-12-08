@@ -30,8 +30,6 @@ var config = {
   }
 };
 
-console.log(config);
-
 // set default environment to development
 var env = process.env.NODE_ENV || 'development';
 
