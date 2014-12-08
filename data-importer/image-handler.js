@@ -4,7 +4,7 @@ var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var config = require('../src/config');
-var imagesPath = config.filesPath + '/raw_images';
+var imagesPath = config.filesPath + '/images_raw';
 var urlPattern = new RegExp(/^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\!\w \.-]*)*\/?$/);
 var httpPattern = new RegExp(/^(https?:\/\/)/);
 

@@ -12,7 +12,8 @@ var config = {
     filesPath : path.resolve(__dirname, '../public'),
     debug : {
       request: ['received', 'error', 'handler']
-    }
+    },
+    imageResizerPath : '/home/mo/data/webkid/projects/simple-spreadsheet-backend/public/image-resizer.sh'
   },
  
   production:  {
@@ -24,7 +25,8 @@ var config = {
     db: 'mongodb://localhost/ddjcat',
     useMailchimp: true,
     filesPath : path.resolve(__dirname, '../../../ddjcat-backend-data/public'),
-    debug : false
+    debug : false,
+    imageResizerPath : '/home/mo/data/webkid/projects/simple-spreadsheet-backend/public/image-resizer.sh'
   }
 };
 

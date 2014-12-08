@@ -17,7 +17,7 @@ var async = require('async');
 var winston = require('winston');
 var fs = require('fs');
 var path = require('path');
-var childProcess = require('child_process');
+var exec = require('child_process').exec;
 
 // helper modules
 var dataCleaner = require('./data-cleaner');
@@ -38,7 +38,7 @@ db.once('open', function callback() {
 
 function updateDatabase(data, tabletop) {
 
-  var katalogData = tabletop.sheets('katalog').elements,
+  var katalogData = tabletop.sheets('test').elements,
     faqData = tabletop.sheets('faq').elements;
 
   winston.info('Found %s datasets', katalogData.length);
@@ -55,8 +55,9 @@ function updateDatabase(data, tabletop) {
     handleError(err);
     uiDataWriter.writeFile();
 
-    childProcess.exec('cd ../public/ && ./image-resizer.sh',  function (error, stdout, stderr){
-      console.log(stdout);
+    // here we call a script, that resizes all images and copies them from images_raw to images
+    exec(config.imageResizerPath, function(error, stdout, stderr){
+      winston.info('image-resizer output:', error, stdout, stderr);
     });
 
     winston.info('Successfully updated database');
