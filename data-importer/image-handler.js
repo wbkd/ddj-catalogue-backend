@@ -53,6 +53,11 @@ function downloadImage(project, cb) {
 
 	request.head(project.imageurl, function(err, res, body){
 
+		if(err){
+			console.log(err);
+			return cb(null,project);
+		}
+
 		// only download images
 		var contentType = res.headers['content-type'];
 		if(contentType.indexOf('image') !== 0){
