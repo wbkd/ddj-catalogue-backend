@@ -2,7 +2,8 @@ node_modules
 .DS_Store
 *.log
 public/images/*.jpg
-public/raw_images/*.jpg
+public/images_raw/*.jpg
 public/data/*.json
 src/private-config.js
 tmp/
+test.js

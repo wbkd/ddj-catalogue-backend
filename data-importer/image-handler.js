@@ -51,8 +51,6 @@ function checkImageUrl(project, cb) {
 
 function downloadImage(project, cb) {
 
-	if(project.imageurl.indexOf('http://') < 0) {project.imageurl = project.url + project.imageurl};
-
 	request.head(project.imageurl, function(err, res, body){
 
 		// only download images
