@@ -38,7 +38,7 @@ db.once('open', function callback() {
 
 function updateDatabase(data, tabletop) {
 
-  var katalogData = tabletop.sheets('test').elements,
+  var katalogData = tabletop.sheets('katalog').elements,
     faqData = tabletop.sheets('faq').elements;
 
   winston.info('Found %s datasets', katalogData.length);
