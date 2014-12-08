@@ -26,9 +26,11 @@ var config = {
     useMailchimp: true,
     filesPath : path.resolve(__dirname, '../../../ddjcat-backend-data/public'),
     debug : false,
-    imageResizerPath : '/home/mo/data/webkid/projects/simple-spreadsheet-backend/public/image-resizer.sh'
+    imageResizerPath : '/home/webkid/projects/striderapps/ddjcat-backend-data/public/image-resizer.sh'
   }
 };
+
+console.log(config);
 
 // set default environment to development
 var env = process.env.NODE_ENV || 'development';
