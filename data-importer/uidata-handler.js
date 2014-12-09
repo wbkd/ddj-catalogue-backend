@@ -6,7 +6,8 @@ var result = {
   byline : [],
   category : [],
   visualform : [],
-  publisher : []
+  publisher : [],
+  organisation: []
 };
 
 module.exports.addData = function(project){
@@ -19,6 +20,9 @@ module.exports.addData = function(project){
 };
 
 module.exports.writeFile = function(){
+
+  result.publisher = result.publisher.concat(result.organisation);
+  delete result.organisation;
 
   Object.keys(result).forEach(function(key,i){
       result[key] = result[key].sort();

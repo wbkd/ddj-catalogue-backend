@@ -52,6 +52,16 @@ module.exports.query = function(req, reply) {
   // only return public projects
   options.filters.public = true; 
 
+  // omg
+  if(typeof options.filters.publisher !== 'undefined'){
+    options.filters.$or = [
+      { publisher : options.filters.publisher },
+      { organisation : options.filters.publisher }
+    ];
+
+    delete options.filters.publisher;
+  }
+
   // only return count if its the first request
   if(parseInt(options.offset) === 0){
     Project.count(options.filters)
