@@ -1,7 +1,8 @@
 var Hapi = require('hapi');
 var Joi = require('joi');
-
+var isUri = require('isuri');
 var Mailer = require('./mailer');
+
 var urlPattern = new RegExp(/^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/);
 
 var validationScheme = {
@@ -13,7 +14,7 @@ module.exports.submitProject = function(req, reply) {
 
   var projectUrl = req.payload.url,
     projectDescription = req.payload.description || 'Keine Anmerkungen',
-    isValidUrl = urlPattern.test(projectUrl);
+    isValidUrl = isUri.test(projectUrl);
 
   if(!isValidUrl){
     return reply({ error: 'Bitte geben Sie eine gültige URL an.' });
