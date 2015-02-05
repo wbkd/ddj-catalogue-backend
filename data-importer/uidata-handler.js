@@ -11,7 +11,13 @@ var result = {
 };
 
 module.exports.addData = function(project){
+    
+    if(!project.public){
+      return false;
+    }
+  
     Object.keys(project).forEach(function(key,i){
+      
       if(!_.isUndefined(result[key])){
         var value = project[key];
         result[key] = result[key].concat(value);

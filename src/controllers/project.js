@@ -33,7 +33,7 @@ module.exports.getById = function(req, reply) {
 module.exports.getByIds = function(req, reply) {
  
   var projectIds = req.payload.ids;
-
+      
   Project.find({_id: { $in : projectIds }},function(err, projects) {
     if (err) throw err;
     
